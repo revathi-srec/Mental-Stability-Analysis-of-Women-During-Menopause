@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Menopause Assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="test-page">
+
+    <div style="text-align:right;margin-bottom:20px;">
+    <button type="button" onclick="showEnglish()">English</button>
+    <button type="button" onclick="showTamil()">தமிழ்</button>
+    </div>
+
+<div class="test-container">
+
+<h2 style="text-align:center;">Menopause Mental Stability Assessment</h2>
+
+
+<form action="/predict" method="post">
+
+<div id="englishQuestions">
+
+<label>Name</label>
+<input type="text" name="patient_name" required>
+
+<p>1. What is your age?</p>
+<input type="number" name="q1" required><br><br>
+
+<p>2. What best describes your current menstrual status?</p>
+<select name="q2">
+<option value="0">Regular – Still regular</option>
+<option value="1">Irregular – Perimenopause</option>
+<option value="2">Stopped naturally – Postmenopause</option>
+<option value="3">Surgical menopause</option>
+</select><br><br>
+
+<p>3. Are you currently using Hormone Replacement Therapy (HRT)?</p>
+<select name="q3">
+<option value="1">Yes</option>
+<option value="0">No</option>
+<option value="2">Used before</option>
+</select><br><br>
+
+<p>4. Age at first menstruation?</p>
+<input type="number" name="q4" required><br><br>
+
+<p>5. How often do you experience hot flashes or night sweats?</p>
+
+<select name="q5">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>6. Do menopausal symptoms disturb your sleep at night? </p>
+<select name="q6">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>7. Do you feel physically exhausted most days? </p>
+<select name="q7">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>8. Do you experience joint or muscle pain? </p>
+<select name="q8">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>9. Do you experience vaginal dryness or discomfort? </p>
+<select name="q9">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>10. Do you feel heart discomfort such as palpitations or chest uneasiness? </p>
+<select name="q10">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>11. Do you experience frequent mood swings?</p>
+<select name="q11">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>12. Do you feel sad, depressed, or hopeless?</p>
+<select name="q12">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>13. Do you feel tired or have very low energy? </p>
+<select name="q13">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>14. Do you feel nervous, anxious, or restless?</p>
+<select name="q14">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>15. Do you experience sudden panic, fear, or breathlessness? </p>
+<select name="q15">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+
+<p>16. Have you noticed weight gain after menopause? </p>
+<select name="q16">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>17. Do you feel that hormonal changes (decrease in estrogen/progesterone) affect your mood and health? </p>
+<select name="q17">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>18. Do you experience memory problems or forgetfulness? </p>
+<select name="q18">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+
+<p>19. Do you feel easily irritated or short-tempered? </p>
+<select name="q19">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+
+<p>20. Do you feel a loss of confidence or self-worth after menopause?</p>
+<select name="q20">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>21. Do you feel lonely or socially withdrawn? </p>
+<select name="q21">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>22. Do you experience breast soreness or tenderness?</p>
+<select name="q22">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>23. Do you experience frequent headaches or migraines? </p>
+<select name="q23">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+
+
+<p>24. Do you feel unable to control stress in your daily life?</p>
+<select name="q24">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>25. Do you experience skin itchiness or dryness without an obvious cause?</p>
+<select name="q25">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>26. Do you experience digestive problems (such as bloating, acidity, constipation) or a burning sensation in the 
+mouth or tongue? </p>
+<select name="q26">
+<option value="0">Never</option>
+<option value="1">Sometimes</option>
+<option value="2">Often</option>
+<option value="3">Very Often</option>
+</select><br><br>
+
+<p>27. How would you rate your overall mental well-being?</p>
+<select name="q27">
+<option value="0">Very good</option>
+<option value="1">Good</option>
+<option value="2">Fair</option>
+<option value="3">Poor</option>
+</select><br><br>
+</div>
+
+<div id="tamilQuestions" style="display:none;">
+
+    <label>பெயர்</label>
+<input type="text" name="patient_name" required>
+
+    <p>1. உங்கள் வயது என்ன?</p>
+<input type="number" name="q1"><br><br>
+
+<p>2. உங்கள் தற்போதைய மாதவிடாய் நிலை எது?</p>
+<select name="q2">
+<option value="0">இன்னும் சீராக உள்ளது</option>
+<option value="1">ஒழுங்கற்றது (Perimenopause)</option>
+<option value="2">இயற்கையாக நிறுத்தம் (Postmenopause)</option>
+<option value="3">அறுவை சிகிச்சை மூலம்</option>
+</select><br><br>
+
+<p>3. நீங்கள் ஹார்மோன் மாற்று சிகிச்சை (HRT) பயன்படுத்துகிறீர்களா?</p>
+<select name="q3">
+<option value="1">ஆம்</option>
+<option value="0">இல்லை</option>
+<option value="2">முன்பு பயன்படுத்தினேன்</option>
+</select><br><br>
+
+
+<p>4. உங்கள் முதல் மாதவிடாய் எந்த வயதில் ஆரம்பமானது?</p>
+<input type="number" name="q4">
+
+<p>5. உங்களுக்கு அடிக்கடி சூடு அலைகள் ஏற்படுகிறதா?</p>
+<select name="q5">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>6. மெனோபாஸ் தொடர்பான அறிகுறிகள் உங்கள் இரவு தூக்கத்தை பாதிக்கிறதா?</p>
+<select name="q6">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>7. பெரும்பாலான நாட்களில் உடல் சோர்வு அல்லது களைப்பு உணர்கிறீர்களா?</p>
+<select name="q7">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>8. உங்களுக்கு மூட்டு அல்லது தசை வலி ஏற்படுகிறதா?</p>
+<select name="q8">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>9. உங்களுக்கு யோனி உலர்வு அல்லது அசௌகரியம் ஏற்படுகிறதா?</p>
+<select name="q9">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>10. இதயத் துடிப்பு அதிகரிப்பு அல்லது மார்பு அசௌகரியம் போன்ற இதய சம்பந்தமான பிரச்சனைகள் உண்டா?</p>
+<select name="q10">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>11. உங்களுக்கு அடிக்கடி மனநிலை மாற்றங்கள் ஏற்படுகிறதா?</p>
+<select name="q11">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>12. நீங்கள் சோகமாக, மனச்சோர்வாக அல்லது நம்பிக்கையற்றதாக உணருகிறீர்களா?</p>
+<select name="q12">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>13. நீங்கள் மிகவும் சோர்வாக அல்லது குறைந்த ஆற்றலுடன் இருப்பதாக உணருகிறீர்களா?</p>
+<select name="q13">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>14. நீங்கள் பதட்டம், கவலை அல்லது அமைதியின்மை உணருகிறீர்களா?</p>
+<select name="q14">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>15. திடீர் பயம், பதட்டம் அல்லது மூச்சுத் திணறல் போன்ற அனுபவங்கள் உண்டா?</p>
+<select name="q15">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>16. மெனோபாஸ் பிறகு உடல் எடை அதிகரித்ததை கவனித்துள்ளீர்களா?</p>
+<select name="q16">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>17. ஹார்மோன் மாற்றங்கள் (எஸ்ட்ரஜன் / புரோஜெஸ்டிரோன் குறைவு) உங்கள் மனநிலை மற்றும் உடல்நலத்தை பாதிக்கிறது என்று உணருகிறீர்களா?</p>
+<select name="q17">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>18. நினைவாற்றல் குறைவு அல்லது மறதி பிரச்சனை உண்டா?</p>
+<select name="q18">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+
+<p>19. நீங்கள் எளிதில் எரிச்சலடைவீர்களா அல்லது சீக்கிரம் கோபப்படுவீர்களா?</p>
+<select name="q19">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+
+<p>20. மெனோபாஸ் பிறகு தன்னம்பிக்கை குறைவு அல்லது சுய மதிப்பு குறைவு உணர்கிறீர்களா?</p>
+<select name="q20">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>21. நீங்கள் தனிமை உணர்வு அல்லது சமூகத்திலிருந்து விலகி இருப்பது போன்ற உணர்வுகளை அனுபவிக்கிறீர்களா?</p>
+<select name="q21">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>22. உங்களுக்கு மார்பகத்தில் வலி அல்லது மென்மை உணர்வு ஏற்படுகிறதா?</p>
+<select name="q22">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>23. உங்களுக்கு அடிக்கடி தலைவலி அல்லது மைக்ரேன் ஏற்படுகிறதா?</p>
+<select name="q23">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+
+<p>24. தினசரி வாழ்க்கையில் மன அழுத்தத்தை கட்டுப்படுத்த முடியவில்லை என்று உணருகிறீர்களா?</p>
+<select name="q24">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>25. தெளிவான காரணமின்றி தோலில் அரிப்பு அல்லது உலர்வு ஏற்படுகிறதா?</p>
+<select name="q25">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>26. செரிமான பிரச்சனைகள் (வயிற்றுப் பொத்து, அமிலத்தன்மை, மலச்சிக்கல்) அல்லது வாயில்/நாக்கில் எரிச்சல் போன்றவை உண்டா?</p>
+<select name="q26">
+<option value="0">ஒருபோதும் இல்லை</option>
+<option value="1">சில நேரங்களில்</option>
+<option value="2">அடிக்கடி</option>
+<option value="3">மிகவும் அடிக்கடி</option>
+</select><br><br>
+
+<p>27. உங்கள் மொத்தமான மனநல நிலையை நீங்கள் எப்படி மதிப்பிடுவீர்கள்?</p>
+<select name="q27">
+<option value="0">மிகவும் நல்லது</option>
+<option value="1">நல்லது</option>
+<option value="2">சராசரி</option>
+<option value="3">மோசமானது</option>
+<input type="hidden" name="language" id="language" value="english">
+</select><br><br>
+
+</div>
+<br><br>
+
+<button type="submit" id="submitBtn">Submit</button>
+</form>
+</div>
+
+<script>
+
+function toggleSection(activeId, inactiveId) {
+
+    document.getElementById(activeId).style.display = "block";
+    document.getElementById(inactiveId).style.display = "none";
+
+    // Enable active inputs
+    document.querySelectorAll("#" + activeId + " input, #" + activeId + " select")
+        .forEach(el => el.disabled = false);
+
+    // Disable inactive inputs
+    document.querySelectorAll("#" + inactiveId + " input, #" + inactiveId + " select")
+        .forEach(el => el.disabled = true);
+}
+
+function showEnglish(){
+    toggleSection("englishQuestions", "tamilQuestions");
+    document.getElementById("submitBtn").innerText = "Submit";
+    document.getElementById("language").value = "english";  
+}
+
+function showTamil(){
+    toggleSection("tamilQuestions", "englishQuestions");
+    document.getElementById("submitBtn").innerText = "சமர்ப்பிக்க";
+    document.getElementById("language").value = "tamil";  
+}
+
+// Run on page load
+window.onload = function() {
+    showEnglish();
+};
+
+</script>
+
+</body>
+</html>

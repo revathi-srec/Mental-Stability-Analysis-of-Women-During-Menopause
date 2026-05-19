@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Personalized Care Plan</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: linear-gradient(to right, #e0f7f6, #ffffff);
+}
+
+.container {
+    width: 60%;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #187c77;
+}
+
+.card {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-top: 15px;
+    border-left: 5px solid #187c77;
+    border-radius: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background: #187c77;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🌟 Personalized Care Plan</h2>
+
+<p><strong>Name:</strong> {{ report.name }}</p>
+<p><strong>Status:</strong> {{ report.status }}</p>
+
+<hr>
+
+<div class="card">
+    <h3>🥗 Diet</h3>
+    <p>{{ report.care.diet }}</p>
+</div>
+
+<div class="card">
+    <h3>🧘 Exercise</h3>
+    <p>{{ report.care.exercise }}</p>
+</div>
+
+<div class="card">
+    <h3>💆 Mental Wellness</h3>
+    <p>{{ report.care.mental }}</p>
+</div>
+
+<div class="card">
+    <h3>😴 Sleep</h3>
+    <p>{{ report.care.sleep }}</p>
+</div>
+
+<br>
+
+<a href="/home">
+    <button>⬅ Back</button>
+</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Advanced Analysis</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(to right, #e0f7f6, #ffffff);
+}
+
+/* CONTAINER */
+.container{
+    width: 90%;
+    margin: auto;
+}
+
+h2{
+    text-align:center;
+    color:#187c77;
+    margin:20px;
+}
+
+/* GRID */
+.grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+/* NORMAL CHART */
+.chart-normal{
+    width:100% !important;
+    height:220px !important;
+}
+
+/* SMALL PIE CHART */
+.chart-small{
+    width:200px !important;
+    height:200px !important;
+    margin:auto;
+}
+
+/* BUTTON */
+.btn{
+    display:block;
+    margin:30px auto;
+    padding:12px 25px;
+    background:#187c77;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+}
+
+.btn:hover{
+    background:#145f5b;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>ADVANCED MENTAL HEALTH ANALYSIS</h2>
+
+<div class="grid">
+
+<!-- PSI -->
+<div class="card">
+<h4>PSI Score</h4>
+<canvas id="psiChart" class="chart-normal"></canvas>
+</div>
+
+<!-- FEATURE -->
+<div class="card">
+<h4>Feature Importance</h4>
+<canvas id="featureChart" class="chart-normal"></canvas>
+</div>
+
+<!-- CATEGORY -->
+<div class="card">
+<h4>Category Analysis</h4>
+<canvas id="categoryChart" class="chart-small"></canvas>
+</div>
+
+<!-- WAVE -->
+<div class="card">
+<h4>Emotional Pattern</h4>
+<canvas id="waveChart" class="chart-normal"></canvas>
+</div>
+
+<!-- CONFIDENCE -->
+<div class="card">
+<h4>Model Confidence</h4>
+<canvas id="confidenceChart" class="chart-small"></canvas>
+</div>
+
+</div>
+
+<!-- ✅ MOVE TO HISTORY BUTTON -->
+<a href="{{ url_for('history') }}" class="btn">
+    View Historical Progress →
+</a>
+
+</div>
+
+<!-- SAFE DATA -->
+<script id="report-data" type="application/json">
+{{ report | tojson | safe }}
+</script>
+
+<script>
+
+// SAFE LOAD
+let reportData = {};
+
+try {
+    reportData = JSON.parse(document.getElementById("report-data").textContent);
+} catch (e) {
+    document.body.innerHTML = "<h2 style='color:red;text-align:center;'>Error loading data</h2>";
+}
+
+let inputs = reportData.inputs || [];
+let score = reportData.score || 0;
+
+// PREVENT ERROR
+if(inputs.length === 0){
+    document.body.innerHTML = "<h2 style='text-align:center;color:red;'>No data available</h2>";
+}
+
+// PSI
+new Chart(document.getElementById("psiChart"), {
+    type: 'bar',
+    data: {
+        labels: ["Score", "Ideal"],
+        datasets: [{
+            label: "PSI",
+            data: [score, 80]
+        }]
+    }
+});
+
+// FEATURE
+new Chart(document.getElementById("featureChart"), {
+    type: 'bar',
+    data: {
+        labels: inputs.map((_,i)=>"Q"+(i+1)),
+        datasets: [{
+            label: "Impact",
+            data: inputs
+        }]
+    }
+});
+
+// CATEGORY
+let mood = inputs.slice(0,7).reduce((a,b)=>a+b,0);
+let anxiety = inputs.slice(7,14).reduce((a,b)=>a+b,0);
+let sleep = inputs.slice(14,21).reduce((a,b)=>a+b,0);
+let physical = inputs.slice(21,27).reduce((a,b)=>a+b,0);
+
+new Chart(document.getElementById("categoryChart"), {
+    type: 'pie',
+    data: {
+        labels: ["Mood", "Anxiety", "Sleep", "Physical"],
+        datasets: [{
+            data: [mood, anxiety, sleep, physical]
+        }]
+    }
+});
+
+// WAVE GRAPH (EMOTIONAL FLOW)
+new Chart(document.getElementById("waveChart"), {
+    type: 'line',
+    data: {
+        labels: inputs.map((_,i)=>"Q"+(i+1)),
+        datasets: [{
+            label: "Emotion Flow",
+            data: inputs,
+            fill: false,
+            tension: 0.4
+        }]
+    }
+});
+
+// CONFIDENCE
+new Chart(document.getElementById("confidenceChart"), {
+    type: 'doughnut',
+    data: {
+        labels: ["Confidence", "Uncertainty"],
+        datasets: [{
+            data: [score, 100-score]
+        }]
+    }
+});
+
+</script>
+
+</body>
+</html>

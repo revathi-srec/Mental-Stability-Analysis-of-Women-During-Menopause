@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Graph Analysis</title>
+
+<style>
+
+body {
+    font-family: Arial;
+    background: linear-gradient(to right, #e0f7f6, #ffffff);
+    margin: 0;
+}
+
+/* MAIN BOX */
+.container {
+    width: 65%;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* TITLE */
+h2 {
+    text-align: center;
+    color: #187c77;
+}
+
+/* INFO */
+.info p {
+    font-size: 16px;
+}
+
+/* BUTTON */
+button {
+    padding: 10px 20px;
+    background: #187c77;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ===== METER ===== */
+.meter-bar {
+    width: 100%;
+    height: 30px;
+    background: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.meter-fill {
+    height: 100%;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    background: linear-gradient(to right, red, orange, green);
+    width: 0%;
+    transition: width 1.5s ease;
+}
+
+/* ===== CHART ===== */
+.chart-box {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+}
+
+/* SECTION TITLE */
+.section-title {
+    margin-top: 30px;
+    font-weight: bold;
+    color: #187c77;
+    text-align: center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📊 Mental Health Analysis</h2>
+
+<div class="info">
+<p><strong>Name:</strong> {{ report.name }}</p>
+<p><strong>Status:</strong> {{ report.status }}</p>
+<p><strong>Emotion:</strong> {{ report.emotion }}</p>
+<p><strong>Score:</strong> {{ report.score }}/100</p>
+</div>
+
+<hr>
+
+<!-- ===== STABILITY METER ===== -->
+<div class="section-title">Stability Meter</div>
+
+<div class="meter-bar">
+    <div id="bar" class="meter-fill">
+        {{ report.score }}%
+    </div>
+</div>
+
+<!-- ===== PIE CHART ===== -->
+<div class="section-title">Health Overview</div>
+
+<div class="chart-box">
+    <canvas id="pieChart"></canvas>
+</div>
+
+<!-- ===== MULTI CATEGORY ===== -->
+<div class="section-title">Detailed Mental Analysis</div>
+
+<div class="chart-box">
+    <canvas id="multiChart"></canvas>
+</div>
+
+<br><br>
+
+<a href="/test">
+    <button>⬅ Back to Test</button>
+</a>
+
+</div>
+
+<!-- Chart JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+// SCORE
+let score = parseInt("{{ report.score }}");
+
+// ===== STABILITY BAR =====
+document.getElementById("bar").style.width = score + "%";
+
+// =====================================
+// PIE CHART
+// =====================================
+let ctx1 = document.getElementById('pieChart').getContext('2d');
+
+new Chart(ctx1, {
+    type: 'pie',
+    data: {
+        labels: ['Healthy', 'Stress'],
+        datasets: [{
+            data: [score, 100 - score],
+            backgroundColor: ['#4caf50', '#ff4d4d']
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+// =====================================
+//  MULTI CATEGORY BAR
+// =====================================
+let sleep = 100 - score + 10;
+let mood = score - 5;
+let anxiety = 100 - score;
+let energy = score;
+let stress = 100 - score;
+
+let ctx2 = document.getElementById('multiChart').getContext('2d');
+
+new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: ['Sleep', 'Mood', 'Anxiety', 'Energy', 'Stress'],
+        datasets: [{
+            label: 'Level',
+            data: [sleep, mood, anxiety, energy, stress],
+            backgroundColor: [
+                '#42a5f5',
+                '#66bb6a',
+                '#ef5350',
+                '#ffa726',
+                '#ab47bc'
+            ]
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100
+            }
+        }
+    }
+});
+
+</script>
+<br><br>
+<a href="/care">
+    <button>🌟 View Care Plan</button>
+</a>
+</body>
+</html>

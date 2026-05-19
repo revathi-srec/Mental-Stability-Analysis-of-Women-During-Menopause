@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindCare Analytics</title>
+
+<style>
+
+/* GOOGLE FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* BODY */
+body{
+    background-color:#f9fbfb;   /* very light clean background */
+    color:#1e293b;
+}
+
+/* NAVBAR */
+header{
+    background:#187c77;
+    padding:15px 0;
+}
+
+nav{
+    width:90%;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:#fff;
+    font-size:22px;
+    font-weight:bold;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:20px;
+}
+
+nav ul a{
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+nav ul a:hover{
+    color:#d1fae5; /* soft mint hover */
+}
+
+/* HERO */
+.hero{
+    width:90%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:60px 0;
+}
+
+.hero-text{
+    width:50%;
+}
+
+.hero-text h1{
+    font-size:36px;
+    margin-bottom:15px;
+    color:#187c77;
+}
+
+.hero-text p{
+    font-size:18px;
+    margin-bottom:20px;
+    color:#475569;
+}
+
+/* BUTTON */
+.btn{
+    background:#187c77;
+    color:white;
+    padding:12px 25px;
+    border-radius:25px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#145e5b;
+    transform:scale(1.05);
+}
+
+/* HERO IMAGE */
+.hero-img img{
+    width:380px;
+}
+
+/* FEATURES */
+.features{
+    width:90%;
+    margin:auto;
+    text-align:center;
+    padding:60px 0;
+}
+
+.features h2{
+    margin-bottom:40px;
+    color:#187c77;
+}
+
+/* CARDS */
+.feature-cards{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    width:260px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    transition:0.3s;
+    border-top:4px solid #187c77;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:60px;
+    margin-bottom:10px;
+}
+
+.card h3{
+    color:#187c77;
+}
+
+.card p{
+    color:#64748b;
+}
+
+/* CTA */
+.cta{
+    background:#187c77;
+    color:white;
+    text-align:center;
+    padding:50px 20px;
+}
+
+.cta .btn{
+    background:white;
+    color:#187c77;
+}
+
+.cta .btn:hover{
+    background:#e6fffa;
+}
+
+/* FOOTER */
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+.hero{
+    flex-direction:column;
+    text-align:center;
+}
+
+.hero-text{
+    width:100%;
+}
+
+.hero-img img{
+    width:250px;
+    margin-top:20px;
+}
+
+.feature-cards{
+    flex-direction:column;
+    align-items:center;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <nav>
+        <div class="logo">MindCare Analytics</div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('about') }}">About Project</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>Mental Stability Analysis for Women During Menopause</h1>
+        <p>
+            AI-powered platform that assesses emotional stability and support 
+            needs during menopause.
+        </p>
+        <a href="{{ url_for('login') }}" class="btn">Get Started</a>
+    </div>
+
+    <div class="hero-img">
+        <img src="{{ url_for('static', filename='m#.webp') }}" alt="Mental Health">
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <h2>Why Choose Our System?</h2>
+
+    <div class="feature-cards">
+
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/4689/4689688.png">
+            <h3>Patient Friendly</h3>
+            <p>Designed with simple and comfortable assessment methods.</p>
+        </div>
+
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3313/3313833.png">
+            <h3>AI Driven</h3>
+            <p>Provides accurate emotional wellbeing predictions.</p>
+        </div>
+
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/4387/4387038.png">
+            <h3>Detailed Reports</h3>
+            <p>Structured reports for medical consultations.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Your Mental Well-Being Matters!</h2>
+    <p>Start your assessment and get meaningful insights today.</p>
+    <br>
+    <a href="{{ url_for('login') }}" class="btn">Start Now</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 MindCare Analytics | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

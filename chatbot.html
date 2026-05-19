@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AI Menopause Support Chatbot</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+background:#f2f6ff;
+margin:0;
+padding:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.chat-container{
+width:700px;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+h2{
+text-align:center;
+margin-bottom:15px;
+}
+
+#chatbox{
+height:550px;
+border:1px solid #ddd;
+overflow-y:auto;
+padding:10px;
+background:#fafafa;
+margin-bottom:10px;
+}
+
+.user{
+background:#d1e7ff;
+padding:8px;
+margin:6px;
+border-radius:6px;
+}
+
+.bot{
+background:#e4ffe8;
+padding:8px;
+margin:6px;
+border-radius:6px;
+}
+
+.input-area{
+display:flex;
+}
+
+#message{
+flex:1;
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+padding:10px 15px;
+border:none;
+background:#4CAF50;
+color:white;
+border-radius:5px;
+margin-left:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#45a049;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+<h2>AI Menopause Chatbot</h2>
+
+<div id="chatbox"></div>
+
+<div class="input-area">
+<input type="text" id="message" placeholder="Ask something...">
+<button onclick="sendMessage()">Send</button>
+</div>
+
+</div>
+
+<script>
+
+function sendMessage(){
+
+let msg=document.getElementById("message").value;
+
+if(msg.trim()==="") return;
+
+let chatbox=document.getElementById("chatbox");
+
+chatbox.innerHTML += "<div class='user'><b>You:</b> "+msg+"</div>";
+
+fetch("/ai_chat",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({message:msg})
+})
+
+.then(res=>res.json())
+.then(data=>{
+
+chatbox.innerHTML += "<div class='bot'><b>AI:</b> "+data.reply+"</div>";
+
+chatbox.scrollTop=chatbox.scrollHeight;
+
+});
+
+document.getElementById("message").value="";
+
+}
+
+</script>
+
+</body>
+</html>

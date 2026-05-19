@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="about-page">
+
+    <div style="text-align:right; margin-bottom:20px;">
+    <button onclick="showEnglish()">English</button>
+    <button onclick="showTamil()">தமிழ்</button>
+</div>
+
+<div id="english">
+
+<h2>1. What is Menopause?</h2>
+
+<p>
+Menopause is a natural biological process that marks the end of a woman’s
+reproductive years. It occurs when a woman has not had a menstrual period
+for 12 consecutive months. Menopause usually occurs between the ages of
+45 and 55.
+</p>
+
+<p>
+During menopause, the ovaries gradually stop producing the hormones
+estrogen and progesterone. These hormonal changes lead to various
+physical and emotional symptoms. Women may experience hot flashes,
+sleep disturbances, fatigue, and changes in metabolism.
+</p>
+
+<p>
+Menopause can also affect mental health. Mood swings, anxiety, irritability,
+and difficulty concentrating are common during this stage. Understanding
+menopause helps women manage these changes and maintain a healthy life.
+</p>
+
+
+<h2>2. Why Mental Stability Matters?</h2>
+
+<p>
+Mental stability is very important during menopause because hormonal
+changes can affect emotions and psychological health. Many women
+experience mood swings, anxiety, stress, or sadness during this phase.
+</p>
+
+<p>
+Maintaining good mental health helps women handle physical symptoms
+more effectively and continue their daily activities normally. A stable
+mind improves decision-making, relationships, and overall quality of life.
+</p>
+
+<p>
+Practices such as regular exercise, meditation, balanced diet, proper
+sleep, and emotional support from family or healthcare professionals
+can help improve mental stability during menopause.
+</p>
+
+</div>
+
+<div id="tamil" style="display:none;">
+
+<h2>1. மெனோபாஸ் என்றால் என்ன?</h2>
+
+<p>
+மெனோபாஸ் என்பது பெண்களின் இனப்பெருக்க காலத்தின் முடிவைக் குறிக்கும்
+ஒரு இயற்கையான உயிரியல் செயல்முறை ஆகும். ஒரு பெண் தொடர்ந்து
+12 மாதங்கள் மாதவிடாய் ஏற்படாமல் இருந்தால் அதனை மெனோபாஸ்
+என்று கூறுகின்றனர். பொதுவாக இது 45 முதல் 55 வயதுக்குள்
+ஏற்படும்.
+</p>
+
+<p>
+மெனோபாஸ் காலத்தில் முட்டையகம் (Ovaries) ஈஸ்ட்ரஜன் மற்றும்
+ப்ரோஜெஸ்ட்ரோன் போன்ற ஹார்மோன்களின் உற்பத்தியை மெதுவாக
+குறைப்பதைக் காணலாம். இதனால் உடல் மற்றும் மனநிலையில்
+பல மாற்றங்கள் ஏற்படலாம்.
+</p>
+
+<p>
+சில பொதுவான அறிகுறிகள் சூடு அலைகள் (Hot flashes),
+தூக்கமின்மை, சோர்வு, மற்றும் உடல் மாற்றங்கள் போன்றவை.
+மேலும் மனநிலையில் மாற்றங்கள், கவலை, எரிச்சல், மற்றும்
+கவனம் குறைதல் போன்றவை ஏற்படலாம்.
+</p>
+
+
+<h2>2. மனநிலை நிலைத்தன்மை ஏன் முக்கியம்?</h2>
+
+<p>
+மெனோபாஸ் காலத்தில் ஹார்மோன் மாற்றங்கள் காரணமாக
+பெண்களின் மனநிலையிலும் மாற்றங்கள் ஏற்படலாம்.
+இதனால் மன அழுத்தம், கவலை, மனச்சோர்வு போன்ற
+பிரச்சினைகள் தோன்றலாம்.
+</p>
+
+<p>
+நல்ல மனநிலை நிலைத்தன்மை இருப்பது பெண்கள் தினசரி
+வாழ்க்கைச் செயல்களை சுலபமாக மேற்கொள்ள உதவுகிறது.
+மேலும் உடல் அறிகுறிகளை சமாளிக்கவும் உதவுகிறது.
+</p>
+
+<p>
+தினசரி உடற்பயிற்சி, யோகா, தியானம், ஆரோக்கியமான
+உணவு பழக்கம், மற்றும் குடும்ப ஆதரவு போன்றவை
+மனநிலையை சீராக வைத்திருக்க உதவும்.
+</p>
+
+</div>
+
+<div class="about-container">
+
+    <div id="previewModal" class="modal">
+        <span class="close" onclick="closePreview()">&times;</span>
+        <img class="modal-content" id="previewImage">
+        <video class="modal-content" id="previewVideo" controls></video>
+    </div>
+
+    <div class="media-row">
+        <img src="{{ url_for('static', filename='Menopause-Symptoms.jpg') }}"
+             class="about-media"
+             onclick="openImage(this.src)">
+
+        <img src="{{ url_for('static', filename='stages_of_menopause.png') }}"
+             class="about-media"
+             onclick="openImage(this.src)">
+    </div>
+
+    <div id="symptoms_en">
+
+    <h2>3. Symptoms Overview</h2>
+
+     <p>
+     Menopause can cause a variety of physical and emotional symptoms.
+     These symptoms vary from person to person. Some women experience
+     mild symptoms while others may face stronger changes.
+     </p>
+     <p>
+     Common physical symptoms include hot flashes, night sweats,
+     sleep disturbances, weight gain, fatigue, and joint pain.
+     Hormonal changes can also affect menstrual cycles before menopause.
+     </p>
+
+    <p>
+     Emotional symptoms may include mood swings, anxiety,
+     irritability, depression, and difficulty concentrating.
+     Recognizing these symptoms early helps women manage their
+     health effectively.
+     </p>
+</div>
+
+
+<div id="symptoms_ta" style="display:none;">
+
+<h2>3. அறிகுறிகள் பற்றிய சுருக்கம்</h2>
+
+<p>
+மெனோபாஸ் காலத்தில் பல உடல் மற்றும் மனநிலை மாற்றங்கள்
+ஏற்படலாம். இந்த அறிகுறிகள் ஒவ்வொரு நபருக்கும் வேறுபடலாம்.
+சில பெண்களுக்கு லேசான அறிகுறிகள் மட்டும் இருக்கலாம்.
+</p>
+
+<p>
+பொதுவான உடல் அறிகுறிகளில் சூடு அலைகள், இரவில் அதிக
+வியர்வை, தூக்கமின்மை, சோர்வு, உடல் எடை அதிகரிப்பு
+போன்றவை அடங்கும்.
+</p>
+
+<p>
+மனநிலை மாற்றங்களாக மன அழுத்தம், கவலை, மனச்சோர்வு,
+எரிச்சல், மற்றும் கவனம் குறைதல் போன்றவை ஏற்படலாம்.
+இந்த அறிகுறிகளை அறிந்து கொள்வது பெண்களின்
+ஆரோக்கியத்தை பாதுகாக்க உதவும்.
+</p>
+
+</div>
+
+    <div class="media-row">
+        <video class="about-media"
+               onclick="openVideo(this.querySelector('source').src)">
+            <source src="{{ url_for('static', filename='videos/video1.mp4') }}" type="video/mp4">
+        </video>
+
+        <video class="about-media"
+               onclick="openVideo(this.querySelector('source').src)">
+            <source src="{{ url_for('static', filename='videos/video2.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+
+    <br>
+    <a href="/home">Back</a>
+
+</div>
+
+<script>
+function openImage(src) {
+    document.getElementById("previewModal").style.display = "block";
+    document.getElementById("previewImage").style.display = "block";
+    document.getElementById("previewVideo").style.display = "none";
+    document.getElementById("previewImage").src = src;
+}
+
+function openVideo(src) {
+    document.getElementById("previewModal").style.display = "block";
+    document.getElementById("previewVideo").style.display = "block";
+    document.getElementById("previewImage").style.display = "none";
+    document.getElementById("previewVideo").src = src;
+}
+
+function closePreview() {
+    document.getElementById("previewModal").style.display = "none";
+    document.getElementById("previewVideo").pause();
+}
+</script>
+<script>
+
+function showEnglish(){
+    document.getElementById("english").style.display="block";
+    document.getElementById("tamil").style.display="none";
+    document.getElementById("symptoms_en").style.display="block";
+    document.getElementById("symptoms_ta").style.display="none";
+}
+
+function showTamil(){
+    document.getElementById("english").style.display="none";
+    document.getElementById("tamil").style.display="block";
+    document.getElementById("symptoms_en").style.display="none";
+    document.getElementById("symptoms_ta").style.display="block";
+}
+
+</script>
+</body>
+</html>

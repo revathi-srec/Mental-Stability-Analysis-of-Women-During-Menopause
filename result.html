@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(to right, #e0f7f6, #ffffff);
+}
+
+.report-box{
+    width: 60%;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    color:#187c77;
+}
+
+p{
+    font-size:16px;
+}
+
+button{
+    padding:10px 15px;
+    background:#187c77;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#145f5c;
+}
+
+.btn-group{
+    margin-top:20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="report-box">
+
+<!--  TITLE -->
+<h2>
+{% if report.language == "tamil" %}
+மெனோபாஸ் நோயாளர் அறிக்கை
+{% else %}
+MENOPAUSE PATIENT REPORT
+{% endif %}
+</h2>
+
+<hr>
+
+<!--  BASIC DETAILS -->
+<p>
+<strong>
+{% if report.language == "tamil" %}பெயர்{% else %}Patient Name{% endif %}:
+</strong> {{ report.name }}
+</p>
+
+<p>
+<strong>
+{% if report.language == "tamil" %}தேதி{% else %}Date{% endif %}:
+</strong> {{ report.date }}
+</p>
+
+<p>
+<strong>
+{% if report.language == "tamil" %}நேரம்{% else %}Time{% endif %}:
+</strong> {{ report.time }}
+</p>
+
+<hr>
+
+<!-- RESULT -->
+<p>
+<strong>
+{% if report.language == "tamil" %}மனநிலை{% else %}Predicted Wellbeing Level{% endif %}:
+</strong> {{ report.status }}
+</p>
+
+<p>
+<strong>
+{% if report.language == "tamil" %}மதிப்பெண்{% else %}Stability Score{% endif %}:
+</strong> {{ report.score }}/100
+</p>
+
+<p>
+<strong>
+{% if report.language == "tamil" %}உணர்ச்சி நிலை{% else %}Detected Emotional State{% endif %}:
+</strong> {{ report.emotion }}
+</p>
+
+<br>
+
+<!-- RECOMMENDATION -->
+<p>
+<strong>
+{% if report.language == "tamil" %}பரிந்துரை{% else %}RECOMMENDATION{% endif %}:
+<p style="white-space: pre-line;">{{ report.recommendation }}</p>
+</strong>
+</p>
+
+
+<!--  BUTTONS -->
+<div class="btn-group">
+
+<a href="/download">
+    <button>
+    {% if report.language == "tamil" %}பதிவிறக்கவும்{% else %}Download Report{% endif %}
+    </button>
+</a>
+
+<a href="/graph">
+    <button>
+    {% if report.language == "tamil" %}வரைபடம் பார்க்க{% else %}View Graph{% endif %}
+    </button>
+</a>
+
+<a href="/advanced">
+    <button>
+    {% if report.language == "tamil" %}மேம்பட்ட பகுப்பாய்வு{% else %}Advanced Analysis{% endif %}
+    </button>
+</a>
+
+<a href="/care">
+    <button>
+    {% if report.language == "tamil" %}பராமரிப்பு திட்டம்{% else %}Care Plan{% endif %}
+    </button>
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

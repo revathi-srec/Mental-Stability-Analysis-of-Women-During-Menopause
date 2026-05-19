@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home | MindCare Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="home-page">
+
+<div class="home-overlay">
+    <h2>Welcome to Menopause Mental Health Assessment</h2>
+    <p>Empowering women through intelligent health analysis</p>
+
+    <br>
+    <a href="{{ url_for('about') }}">
+        <button>About Menopause</button>
+    </a>
+
+    <br><br>
+
+    <a href="{{ url_for('test') }}">
+        <button>Start Testing</button>
+    </a>
+<br><br>
+    <a href="/chatbot">
+    <button>💬 I Am Here To Help</button>
+</a> 
+
+</div>
+
+</body>
+</html>

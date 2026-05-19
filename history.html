@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>History Tracking</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(to right,#e0f7f6,#ffffff);
+}
+
+/* CONTAINER */
+.container{
+    width:90%;
+    margin:auto;
+    text-align:center;
+}
+
+/* BIG GRAPH */
+canvas{
+    width:100% !important;
+    height:400px !important;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* TEXT */
+h2{
+    color:#187c77;
+}
+
+p{
+    font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Your Mental Health Progress</h2>
+
+<div class="card">
+<canvas id="historyChart"></canvas>
+</div>
+
+<!-- ✅ INSIGHT SECTION -->
+<div class="card">
+<h3>AI-Based Trend Analysis</h3>
+<p id="analysisText"></p>
+</div>
+
+</div>
+
+<!-- ✅ SAFE DATA -->
+<script id="history-data" type="application/json">
+{
+    "dates": {{ dates | tojson | safe }},
+    "scores": {{ scores | tojson | safe }}
+}
+</script>
+
+<script>
+
+// SAFE LOAD
+let historyData = {};
+
+try {
+    historyData = JSON.parse(document.getElementById("history-data").textContent);
+} catch(e){
+    document.body.innerHTML = "<h2 style='color:red;text-align:center;'>Error loading history data</h2>";
+}
+
+// GET DATA
+let dates = historyData.dates || [];
+let scores = historyData.scores || [];
+
+// NO DATA
+if(dates.length === 0){
+    document.body.innerHTML = "<h2 style='text-align:center;'>No history available</h2>";
+}
+
+// ---------------- GRAPH ----------------
+new Chart(document.getElementById("historyChart"), {
+    type: 'line',
+    data: {
+        labels: dates,
+        datasets: [{
+            label: "PSI Score Over Time",
+            data: scores,
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100
+            }
+        }
+    }
+});
+
+// ---------------- AI ANALYSIS ----------------
+let analysisText = "";
+
+if(scores.length > 1){
+    let first = scores[0];
+    let last = scores[scores.length - 1];
+
+    if(last > first){
+        analysisText = "📈 Your mental health shows improvement over time. This indicates positive emotional stability and effective coping strategies.";
+    }
+    else if(last < first){
+        analysisText = "📉 There is a decline in your mental well-being. It is recommended to follow care plans and consult professionals if needed.";
+    }
+    else{
+        analysisText = "⚖️ Your mental health remains stable. Continue maintaining a healthy lifestyle.";
+    }
+}else{
+    analysisText = "ℹ️ Only one record available. More data is needed to analyze trends.";
+}
+
+// DISPLAY
+document.getElementById("analysisText").innerText = analysisText;
+
+</script>
+
+</body>
+</html>
